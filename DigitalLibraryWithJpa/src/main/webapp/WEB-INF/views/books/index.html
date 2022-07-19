@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books in the library</title>
+</head>
+<body>
+
+<form th:action="@{/books/search/}">
+    <input type="submit" value="Найти книгу"/>
+</form>
+
+<div th:each="book : ${books}" >
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">user</a>
+</div>
+
+
+<br/>
+<hr/>
+
+
+<form th:action="@{/books/new}">
+    <input type="submit" value="Добавить книгу"/>
+</form>
+
+
+<form th:action="@{/people}">
+    <input type="submit" value="К людям"/>
+</form>
+
+<br/>
+<br/>
+<hr/>
+
+
+<form th:method="GET" th:action="@{/books}">
+    <input type="hidden" th:name="sort_by_year" th:value="true"/>
+    <input type="submit" value="Сортировать">
+</form>
+
+<form th:method="GET" th:action="@{/books}">
+    <input type="hidden" th:name="sort_by_year" th:value="false"/>
+    <input type="submit" value="Не сортировать">
+</form>
+
+<!--<form th:method="GET" th:action="@{/books}">-->
+<!--    <input type="checkbox" th:name="sort_by_year">-->
+<!--    <input type="submit" value="Сортировать">-->
+<!--</form>-->
+
+
+</body>
+</html>
+
